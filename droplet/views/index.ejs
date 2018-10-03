@@ -1,0 +1,54 @@
+<%- include('partials/header'); %>
+
+<div class="logo">12</div>
+
+<div class="toggle-holder">
+	<div class="form-toggle deselected" id="register-toggle">Register</div>
+	<div class="form-toggle" id="login-toggle">Log In</div>
+</div>
+<div class="form-holder">
+	<form id="register">
+		<h3>Register New Account</h3>
+		<label>Name</label>
+		<input name="name" type="text" placeholder="Name" required="required">
+		<label>Username</label>
+		<input name="username" type="text" placeholder="Please enter a username" required="required">
+		<label>Password</label>
+		<input name="password" type="password" placeholder="Please enter a password" required="required">
+		<!-- <input name="password2" type="password" placeholder="Please enter you password again" required="required"> -->
+		<input type="submit" value="Register">
+	</form>
+	<form id="login">
+		<h3>Log In</h3>
+		<label>Username</label>
+		<input name="username" type="text" placeholder="Username" required="required">
+		<label>Password</label>
+		<input name="password" type="password" placeholder="Password" required="required">
+		<input type="submit" value="Log In">
+	</form>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		const registerToggle = $("#register-toggle");
+		const loginToggle = $("#login-toggle");
+		const registerForm = $("form#register");
+		const loginForm = $("form#login");
+		$(registerToggle).click(function(){
+			loginForm.fadeOut();
+			setTimeout(function(){ registerForm.fadeIn()}, 400);
+			registerToggle.removeClass("deselected")
+			loginToggle.addClass("deselected")
+
+		});
+		$(loginToggle).click(function(){
+			registerForm.fadeOut();
+			setTimeout(function(){ loginForm.fadeIn()}, 400);
+			registerToggle.addClass("deselected");
+			loginToggle.removeClass("deselected");
+			
+		});
+	});
+</script>
+
+<%- include('partials/footer'); %>

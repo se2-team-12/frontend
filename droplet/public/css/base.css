@@ -1,0 +1,168 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+    font-family: 'Montserrat';
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+    background: aliceblue;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*TEAM 12 STYLING HERE*/
+
+div.content{
+    min-height: 85vh;
+}
+header.header, footer{
+	/*background: #6c7282;*/
+    background: #6c748c;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-family: 'Montserrat';
+}
+
+.header span, footer span{
+	padding: 0 10px 0 0;
+	display: inline-block;
+}
+
+.logo{
+	padding: 23.5px 0px;
+    width: 100px;
+    margin: 35px auto;
+    font-size: 53px;
+    text-align: center;
+    color: #fbfbfb;
+    background: #5763a0;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+div.toggle-holder{
+    width: 100%;
+    max-width: 500px;
+    background: #fff0cc;
+    margin: auto;
+    /* padding: 20px 0; */
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    position: absolute;
+    left: 50%;
+    margin-left: -250px;
+    font-family: montserrat;
+    font-weight: bold;
+    /* margin-bottom: 16px; */
+}
+
+.form-toggle{
+    display: inline-block;
+    text-align: center;
+    width: 50%;
+    font-family: montserrat;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 20px 0;
+}
+#login-toggle{
+    width: 49%;
+    border-top-right-radius: 14px;
+   
+
+}
+.deselected{
+    opacity: 0.7;
+    background: wheat;
+}
+.form-holder{
+    max-width: 500px;
+    text-align: center;
+    background: #fff0cc;
+    width: 100%;
+    padding: 40px;
+    margin: 35px auto;
+    padding-top: 75px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    -webkit-box-shadow: 0px 10px 18px 1px rgba(201,201,201,1);
+    -moz-box-shadow: 0px 10px 18px 1px rgba(201,201,201,1);
+    box-shadow: 0px 10px 18px 1px rgba(201,201,201,1);
+}
+
+form{
+    text-align: left;
+}
+form h3{
+    text-align: center;
+    font-family: montserrat;
+    margin: 10px 0 30px;
+    font-size: 19px;
+}
+form label{
+    font-family: montserrat;
+    padding-left: 85px;
+    font-size: 12px;
+    opacity: 0.7;
+    font-weight: bold;
+}
+form#register{
+    display: none;
+}
+form input{
+    display: block;
+    margin: 15px auto;
+    padding: 8px 5px;
+    width: 240px;
+    font-family: 'Montserrat';
+}
+
+form input[type="submit"]{
+    border: none;
+    padding: 15px;
+    margin-top: 30px;
+    /*background: #5a6f9a;*/
+    background-color: #6c748c;
+    font-size: 16px;
+    color: white;
+}
