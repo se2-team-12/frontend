@@ -8,6 +8,14 @@ router.get('/', function (req, res) {
     });
 });
 
+router.get('/:userId/dashboard', function(req, res){
+	const params =  req.params;
+
+	const data = params;
+
+	res.render('../views/dashboard.ejs', data);
+});
+
 router.post('/', function (req, res) {
     res.status(201).json(req.body);
 });
