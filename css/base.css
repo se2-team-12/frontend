@@ -20,8 +20,7 @@ time, mark, audio, video {
 	padding: 0;
 	border: 0;
 	font-size: 100%;
-    font-family: 'Montserrat';
-	font: inherit;
+    font-family: montserrat;
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
@@ -53,6 +52,7 @@ table {
 
 div.content{
     min-height: 85vh;
+    height: 91vh;
 }
 header.header, footer{
 	/*background: #6c7282;*/
@@ -60,7 +60,7 @@ header.header, footer{
     color: white;
     padding: 10px;
     text-align: center;
-    font-family: 'Montserrat';
+    clear: both;
 }
 
 .header span, footer span{
@@ -78,6 +78,7 @@ header.header, footer{
     background: #5763a0;
     border-radius: 50%;
     font-weight: bold;
+    font-family: serif;
 }
 
 div.toggle-holder{
@@ -165,4 +166,71 @@ form input[type="submit"]{
     background-color: #6c748c;
     font-size: 16px;
     color: white;
+}
+
+/*Dashboard*/
+
+div.nav{
+    max-width: 300px;
+    width: 24%;
+    float: left;
+    height: 100%;
+    background: wheat;
+}
+
+
+div.nav ul li{
+    cursor: pointer;
+    padding: 11px 10px;
+    font-family: montserrat;
+    font-size: 15px;
+    background: #fff0cc;
+}
+
+div.nav ul li:hover{
+    background-color: wheat;
+}
+
+#nav-gateway-select li{
+    padding-left: 30px;
+}
+
+div.right-view{
+    width: 76%;
+    margin: auto;
+    float: left;
+}
+
+div.right-view section{
+    padding: 60px 40px;
+}
+
+div.right-view section h3{
+    text-align: center;
+    font-family: montserrat;
+    padding: 40px;
+    padding-top: 0;
+    font-size: 26px;
+}
+.dataTables_wrapper{
+    max-width: 1000px;
+    margin: auto;
+}
+
+
+
+@media screen and (max-width: 900px){
+    div.nav{
+        position: absolute;
+        height: 91%;
+        width: 100%;
+        z-index: 1;
+        display: none;
+    }
+
+    div.right-view{
+        width: 100%;
+    }
+
+
 }
