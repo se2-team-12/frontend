@@ -11,8 +11,13 @@ router.get('/', function (req, res) {
 router.get('/:userId/dashboard', function(req, res){
 	const params =  req.params;
 
-	const data = params;
+	
+	var obj = JSON.parse(params);
+	var obj["test"] = "test";
 
+	const data = JSON.stringify(obj);
+
+	console.log(data);
 	res.render('../views/dashboard.ejs', data);
 });
 
