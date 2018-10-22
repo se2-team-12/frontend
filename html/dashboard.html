@@ -4,16 +4,16 @@
 	<meta charset ="utf-8">
 	<meta name ="viewport" content = "width=device-width, initial-scale=1.0">
 	<meta name = "author" content ="Team 12">
-	<link rel="stylesheet" href ="./css/base.css" type = "text/css"/>
+	<link rel="stylesheet" href ="../css/base.css" type = "text/css"/>
 	<title>Dashboard</title>
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-  
+  		
 
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-
+  <script src="../js/dashboard.js"></script>
 </head>
 
 <body>
@@ -32,8 +32,7 @@
 			<li class="nav-item" data-id="dashboard-view">Dashboard</li>
 			<li style="padding:0">
 				<ul id="nav-gateway-select">
-					<li class="nav-item" data-id="gateway-focus" data-gateway-id="1">Gateway 1</li>
-					<li class="nav-item" data-id="gateway-focus" data-gateway-id="2">Gateway 2</li>
+					<li class="nav-item" data-id="gateway-focus" data-gateway-id="1234">Gateway 1234</li>
 				</ul>
 			</li>
 			<li class="nav-item" data-id="gateway-register-view">
@@ -56,13 +55,9 @@
 			        </tr>
 			    </thead>
 			    <tbody>
-			        <tr data-id="1">
-			            <td>1</td>
+			        <tr data-id="1234">
+			            <td>1234</td>
 			            <td>Alpha</td>
-			        </tr>
-			        <tr data-id="2">
-			            <td>2</td>
-			            <td>Beta</td>
 			        </tr>
 			    </tbody>
 			</table>
@@ -70,24 +65,37 @@
 		</section>
 
 		<section id="gateway-focus" style="display:none;">
-			<h3>Gateway</h3>
+			<h3 id="gateway-label">Gateway</h3>
 			<button id="refresh-table" type="button">Refresh</button>
 			<table id="gateway-focus-table" class="display">
 			    <thead>
 			        <tr>
-			            <th>Gateway ID</th>
-			            <th>Timestamp</th>
+			            <th>GatewayId</th>
+                		<th>TimeStamp</th>
 			        </tr>
 			    </thead>
 			    <tbody>
+			    </tbody>
+			</table>
+
+			<h3>On Demand Diagnostics</h3>
+			<select id="diagnosticSelect">
+				<option value="cpuBattery.py">Battery %</option>
+				<option value="memory.py">Memory Test</option>
+				<option value="cpuCount.py">Cpu Count Test</option>
+			</select>
+
+			<button type="button" id="onDemandDiagnostic">On Demand Diagnostic</button>
+
+			<table id="gateway-onDemand-table" class="display">
+			    <thead>
 			        <tr>
-			            <td>1</td>
-			            <td>4:00:00</td>
+			            <th>GatewayId</th>
+                		<th>Type</th>
+                		<th>Result</th>
 			        </tr>
-			        <tr>
-			            <td>2</td>
-			            <td>4:00:20</td>
-			        </tr>
+			    </thead>
+			    <tbody>
 			    </tbody>
 			</table>
 
@@ -98,61 +106,6 @@
 
 		</section>
 	</div>
-
-		
-	<script type="text/javascript">
-		$(document).ready( function () {
-
-			 $.ajax({url: "https://team12.softwareengineeringii.com/api/", success: function(result){
-       	 		console.log(result);
-    		}});
-
-			let inView = "dashboard-view";
-			const dashboardTable = $('#gateway-table').DataTable();
-
-			let gatewayFocusTable;
-
-
-
-			$("div.nav li.nav-item").click(function(){
-
-
-				let navValue = $(this).attr("data-id");
-
-				
-					if(navValue == "gateway-focus"){
-						$("section#"+inView).fadeOut();
-						setTimeout(function(){ $("section#" + navValue).fadeIn();}, 400);
-
-						let gatewayId = $(this).attr("data-gateway-id");
-
-						$("section#gateway-focus h3").text("Gateway " + gatewayId);
-					}
-
-					else if(navValue != inView){
-						$("section#"+inView).fadeOut();
-						setTimeout(function(){ $("section#" + navValue).fadeIn();}, 400);
-					}
-
-					inView = navValue;
-				
-		
-			});
-
-	   		
-
-	   		$("#gateway-table tbody tr").click(function (e) {
-	   			let id = $(this).attr("data-id");
-
-	   			$("section#"+inView).fadeOut();
-				setTimeout(function(){ $("section#gateway-focus").fadeIn();}, 400);
-				$("section#gateway-focus h3").text("Gateway " + id);
-				inView = "gateway-focus";
-	   			console.log(id);
-	   		})
-		});	
-
-	</script>
 
 	</div> <!-- end content div -->
 	<footer class="site-footer">
