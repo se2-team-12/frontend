@@ -47,7 +47,7 @@
 				</ul>
 			</li>
 			<li class="nav-item" data-id="gateway-register-view">
-				Register New Gateway
+				Create New Gateway
 			</li>
 			<li class="nav-item" data-id="software-download">
 				Upload New Diagnostic
@@ -80,7 +80,7 @@
 
 		<section id="gateway-focus" style="display:none;">
 			<h3 id="gateway-label">Gateway</h3>
-			<button id="refresh-table" type="button">Refresh</button>
+			<!-- <button id="refresh-table" type="button">Refresh</button>
 			<table id="gateway-focus-table" class="display">
 			    <thead>
 			        <tr>
@@ -90,7 +90,7 @@
 			    </thead>
 			    <tbody>
 			    </tbody>
-			</table>
+			</table> -->
 
 			<div class="eventcontrol"></div>
 
@@ -109,9 +109,34 @@
 			<table id="gateway-onDemand-table" class="display">
 			    <thead>
 			        <tr>
-			            <th>GatewayId</th>
                 		<th>Type</th>
                 		<th>Result</th>
+			        </tr>
+			    </thead>
+			    <tbody>
+			    </tbody>
+			</table>
+
+
+			<h3>Daily Diagnostics</h3>
+			<select id="diagnosticSelect">
+				<option value="cpuBattery.py">Battery %</option>
+				<option value="memory.py">Memory Test</option>
+				<option value="cpuCount.py">Cpu Count Test</option>
+			</select>
+
+			<input type="text" placeholder="Choose a Time">
+
+			<input type="submit" value="Update Daily Diagnostic">
+
+			<table id="gateway-dailyDiagnostic-table" class="display">
+			    <thead>
+			        <tr>
+			        	<th>Date</th>
+			        	<th>Time</th>
+                		<th>Type</th>
+                		<th>Result</th>
+
 			        </tr>
 			    </thead>
 			    <tbody>
@@ -121,14 +146,24 @@
 		</section>
 
 		<section id="gateway-register-view" style="display: none;">
-			<h3>Register Gateway</h3>
+			<h3>Create Gateway</h3>
+
+			<form id="register-gateway">
+				<div id="reigster-gateway-response"></div>
+				<button id="register-gateway">Download Gateway Code!</button>
+
+			</form>
 
 		</section>
 
 		<section id="software-download" style="display: none;">
 			<h3>Upload Custom Diagnostic Software</h3>
 			<form id="software-download-form">
-  				<input type="file" name="diagnostic">
+				<select name="gatewayID">
+					<option value="1234">Gateway 1234</option>
+				</select>
+				<span>Please select a python file to upload
+  				<input type="file" name="diagnostic"  accept=".py">
   				<input type="submit" value="Upload Diagnostic Code">
 			</form>
 		</section>

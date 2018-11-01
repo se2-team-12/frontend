@@ -14,44 +14,44 @@ $(document).ready( function () {
 
 			$("section#"+inView).fadeOut();
 			setTimeout(function(){ $("section#gateway-focus").fadeIn();}, 400);
-			$("section#gateway-focus h3#gateway-label").text("Gateway " + gatewayId);
+			$("section#gateway-focus h3#gateway-label").text("Gateway " + gatewayId + " Heartbeats");
 		
 
 			inView = "gateway-focus";
 	   		gatewayInFocus = gatewayId;
 
-			$("section#gateway-focus h3#gateway-label").text("Gateway " + gatewayId);
+			// $("section#gateway-focus h3#gateway-label").text("Gateway " + gatewayId);
 
-			let ajaxUrl = "https://team12.softwareengineeringii.com/api/clientSide/" + gatewayId;
+			// let ajaxUrl = "https://team12.softwareengineeringii.com/api/clientSide/" + gatewayId;
 
-			gatewayFocusTable = $('#gateway-focus-table').DataTable( {
-    			ajax: {
-        			url: ajaxUrl,
-        			dataSrc: function (json) {
-		      					var return_data = new Array();
-		      					for(var i=0;i< json.length; i++){
+			// gatewayFocusTable = $('#gateway-focus-table').DataTable( {
+   //  			ajax: {
+   //      			url: ajaxUrl,
+   //      			dataSrc: function (json) {
+		 //      					var return_data = new Array();
+		 //      					for(var i=0;i< json.length; i++){
 
-		      						if(json[i].TimeStamp){
-		      							var timeEpoch = json[i].TimeStamp;
-		      							var d = new Date(0);
-		      							d.setUTCSeconds(timeEpoch);
+		 //      						if(json[i].TimeStamp){
+		 //      							var timeEpoch = json[i].TimeStamp;
+		 //      							var d = new Date(0);
+		 //      							d.setUTCSeconds(timeEpoch);
 
-		        						return_data.push({
-						          			'GatewayId': json[i].GatewayId,
-						          			'TimeStamp' : d.toLocaleString(),
-		        						})
-		      						}
+		 //        						return_data.push({
+			// 			          			'GatewayId': json[i].GatewayId,
+			// 			          			'TimeStamp' : d.toLocaleString(),
+		 //        						})
+		 //      						}
 		      						
-		      					}
-		      					return return_data;
-    						}
-    			},
-    			columns: [
-			        { data: "GatewayId" },
-			        { data: "TimeStamp" },
-    			],
-    			"order": [[1, 'desc']]
-			} );
+		 //      					}
+		 //      					return return_data;
+   //  						}
+   //  			},
+   //  			columns: [
+			//         { data: "GatewayId" },
+			//         { data: "TimeStamp" },
+   //  			],
+   //  			"order": [[1, 'desc']]
+			// } );
 
 			loadFocusGatewayData(gatewayId);
 
