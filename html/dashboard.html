@@ -14,6 +14,17 @@
 
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
   <script src="../js/dashboard.js"></script>
+
+
+  <script src="../js/hammer.min.js"></script>
+
+	<script src="../js/moment.min.js"></script>
+
+	<link href="../css/eventcontrol.css" rel="stylesheet">
+
+<script src="../js/eventcontrol.js"></script>
+
+
 </head>
 
 <body>
@@ -37,6 +48,9 @@
 			</li>
 			<li class="nav-item" data-id="gateway-register-view">
 				Register New Gateway
+			</li>
+			<li class="nav-item" data-id="software-download">
+				Upload New Diagnostic
 			</li>
 		</ul>
 
@@ -78,6 +92,11 @@
 			    </tbody>
 			</table>
 
+			<div class="eventcontrol"></div>
+
+			<div class="eventcontrol-target"></div>
+
+
 			<h3>On Demand Diagnostics</h3>
 			<select id="diagnosticSelect">
 				<option value="cpuBattery.py">Battery %</option>
@@ -104,6 +123,14 @@
 		<section id="gateway-register-view" style="display: none;">
 			<h3>Register Gateway</h3>
 
+		</section>
+
+		<section id="software-download" style="display: none;">
+			<h3>Upload Custom Diagnostic Software</h3>
+			<form id="software-download-form">
+  				<input type="file" name="diagnostic">
+  				<input type="submit" value="Upload Diagnostic Code">
+			</form>
 		</section>
 	</div>
 

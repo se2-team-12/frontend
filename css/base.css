@@ -63,10 +63,6 @@ header.header, footer{
     clear: both;
 }
 
-footer{
-    margin-top: 50px;
-}
-
 .header span, footer span{
 	padding: 0 10px 0 0;
 	display: inline-block;

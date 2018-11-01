@@ -31,7 +31,7 @@ $(document).ready(function(){
         		alert( "Data Saved: " + msg );
   			},
   			error: function(XMLHttpRequest, textStatus, errorThrown) {
-     			alert("some error");
+     			alert("some error" + errorThrown + textStatus);
   			}
 		});
 		
