@@ -1,20 +1,45 @@
 $(document).ready( function () {
 
+	const userGateways = ["5bde6bf82c7ac54bbdf5bb85"];
 	let inView = "dashboard-view";
 	
 
 	let gatewayInFocus;
-	let gatewayFocusTable;
 
+
+	let gatewayFocusTable;
+	let onDemandTable;
+	let dailyDiagnosticTable;
+	
 	function initGatewaysDashboard(){
-		const dashboardTable = $('#gateway-table').DataTable();
+
+		let navHtml = "";
+		let dashboardTable = $('#gateway-table').DataTable({
+			  'createdRow': function( row, data, dataIndex ) {
+			      $(row).attr('data-id', userGateways[dataIndex]);
+			  },
+			});
+
+		for (var i = 0; i < userGateways.length; i++) {
+			let gatewayId = userGateways[i];
+			navHtml += '<li class="nav-item" data-id="gateway-focus" data-gateway-id="' + gatewayId + '">Gateway ' + (i+1) + '</li>'
+			
+			dashboardTable.row.add([i + 1, 'Alpha']).draw();
+
+			$("#software-download-form select").append("<option value='" + gatewayId + "'>Gateway " + (i+1) + "</option>")
+		}
+
+		$("#nav-gateway-select").html(navHtml);
+
 	}
 
 	function focusGateway(gatewayId){
 
 			$("section#"+inView).fadeOut();
+
+			let title =  userGateways.indexOf(gatewayId) + 1;
 			setTimeout(function(){ $("section#gateway-focus").fadeIn();}, 400);
-			$("section#gateway-focus h3#gateway-label").text("Gateway " + gatewayId + " Heartbeats");
+			$("section#gateway-focus h3#gateway-label").text("Gateway " + title + " Heartbeats");
 		
 
 			inView = "gateway-focus";
@@ -22,7 +47,7 @@ $(document).ready( function () {
 
 			// $("section#gateway-focus h3#gateway-label").text("Gateway " + gatewayId);
 
-			// let ajaxUrl = "https://team12.softwareengineeringii.com/api/clientSide/" + gatewayId;
+			// let ajaxUrl = "https://team12.dev.softwareengineeringii.com/api/clientSide/" + gatewayId;
 
 			// gatewayFocusTable = $('#gateway-focus-table').DataTable( {
    //  			ajax: {
@@ -61,14 +86,17 @@ $(document).ready( function () {
 
 
 		//Load On Demand Diagnostics for Gateway id
-		$.ajax({url: "https://team12.softwareengineeringii.com/api/clientSide/onDemand/1234", success: function(result){
+		if(!onDemandTable){
+
+
+		$.ajax({url: "https://team12.dev.softwareengineeringii.com/api/clientSide/onDemand/" + gatewayId, success: function(result){
      		let dataSet = [];
      		for(var i in result) {
      			let item = result[i];
 
   				if(item["IsClear"] == true && item["Type"]){
 
-  					let dataRow = [item["GatewayId"], item["Type"], item["Result"]]
+  					let dataRow = [item["Type"], item["Result"]]
   					dataSet.push(dataRow);
   				
   				}
@@ -76,10 +104,9 @@ $(document).ready( function () {
 
 			// console.log(dataSet);
 
-			$('#gateway-onDemand-table').DataTable( {
+			onDemandTable = $('#gateway-onDemand-table').DataTable( {
 	        	data: dataSet,
 	        	columns: [
-	            	{ title: "GatewayId" },
 	            	{ title: "Type" },
 	            	{ title: "Result"}
 	        	]
@@ -87,6 +114,12 @@ $(document).ready( function () {
 
 
    	 	}});
+
+		}
+
+		if(!dailyDiagnosticTable){
+			dailyDiagnosticTable = $("#gateway-dailyDiagnostic-table").DataTable();
+		}
 	}
 
 	function createNewGateway(){
@@ -132,7 +165,7 @@ $(document).ready( function () {
 		const diagnostic = $("#diagnosticSelect").val();
 		const gatewayId = gatewayInFocus;
 
-		$.post( "https://team12.softwareengineeringii.com/api/clientSide", { ODD: diagnostic, GatewayId: gatewayId })
+		$.post( "https://team12.dev.softwareengineeringii.com/api/clientSide", { ODD: diagnostic, GatewayId: gatewayId })
 		  .done(function( data ) {
 		    alert( "Data Loaded: " + data );
 

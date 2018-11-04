@@ -5,10 +5,13 @@
 	<meta name ="viewport" content = "width=device-width, initial-scale=1.0">
 	<meta name = "author" content ="Team 12">
 	<link rel="stylesheet" href ="../css/base.css" type = "text/css"/>
+
 	<title>Dashboard</title>
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-  		
+  	
+
+
 
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
@@ -23,6 +26,7 @@
 	<link href="../css/eventcontrol.css" rel="stylesheet">
 
 <script src="../js/eventcontrol.js"></script>
+
 
 
 </head>
@@ -43,7 +47,7 @@
 			<li class="nav-item" data-id="dashboard-view">Dashboard</li>
 			<li style="padding:0">
 				<ul id="nav-gateway-select">
-					<li class="nav-item" data-id="gateway-focus" data-gateway-id="1234">Gateway 1234</li>
+					<!-- <li class="nav-item" data-id="gateway-focus" data-gateway-id="1234">Gateway 1234</li> -->
 				</ul>
 			</li>
 			<li class="nav-item" data-id="gateway-register-view">
@@ -68,12 +72,6 @@
 			            <th>Name</th>
 			        </tr>
 			    </thead>
-			    <tbody>
-			        <tr data-id="1234">
-			            <td>1234</td>
-			            <td>Alpha</td>
-			        </tr>
-			    </tbody>
 			</table>
 
 		</section>
@@ -125,7 +123,7 @@
 				<option value="cpuCount.py">Cpu Count Test</option>
 			</select>
 
-			<input type="text" placeholder="Choose a Time">
+
 
 			<input type="submit" value="Update Daily Diagnostic">
 
@@ -160,7 +158,7 @@
 			<h3>Upload Custom Diagnostic Software</h3>
 			<form id="software-download-form">
 				<select name="gatewayID">
-					<option value="1234">Gateway 1234</option>
+					<!-- <option value="1234">Gateway 1234</option> -->
 				</select>
 				<span>Please select a python file to upload
   				<input type="file" name="diagnostic"  accept=".py">

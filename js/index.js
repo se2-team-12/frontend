@@ -25,7 +25,7 @@ $(document).ready(function(){
 
 		$.ajax({
   			type: "POST",
-  			url: "https://team12.softwareengineeringii.com/api/clientSide/user",
+  			url: "https://team12.dev.softwareengineeringii.com/api/clientSide/user",
   			data: formData,
   			success: function(msg){
         		alert( "Data Saved: " + msg );
@@ -42,7 +42,7 @@ $(document).ready(function(){
 		let formData = $(this).serializeArray();
 		$.ajax({
   			type: "POST",
-  			url: "https://team12.softwareengineeringii.com/api/clientSide/users/login",
+  			url: "https://team12.dev.softwareengineeringii.com/api/clientSide/users/login",
   			data: formData,
   			success: function(msg){
         		window.location.href = "./dashboard.html";
