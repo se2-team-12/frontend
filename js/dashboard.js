@@ -81,6 +81,12 @@ $(document).ready( function () {
    //  			"order": [[1, 'desc']]
 			// } );
 
+			if(onDemandTable){
+				onDemandTable.destroy();
+			}
+			if(dailyDiagnosticTable){
+				dailyDiagnosticTable.destroy();
+			}
 			loadFocusGatewayData(gatewayId);
 
 	}
@@ -89,9 +95,6 @@ $(document).ready( function () {
 
 
 		//Load On Demand Diagnostics for Gateway id
-		if(!onDemandTable){
-
-
 		$.ajax({url: "https://team12.dev.softwareengineeringii.com/api/clientSide/onDemand/" + gatewayId, success: function(result){
      		let dataSet = [];
      		for(var i in result) {
@@ -118,11 +121,9 @@ $(document).ready( function () {
 
    	 	}});
 
-		}
 
-		if(!dailyDiagnosticTable){
-			dailyDiagnosticTable = $("#gateway-dailyDiagnostic-table").DataTable();
-		}
+		dailyDiagnosticTable = $("#gateway-dailyDiagnostic-table").DataTable();
+		
 	}
 
 	function createNewGateway(){
