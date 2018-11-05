@@ -5,4 +5,4 @@ jobs:
       - image: circleci/node:8.10
     steps:
       - checkout
-      - run: ssh circleci@team12.dev.softwareengineeringii.com "./deploy_project.sh"
+      - run: ssh circleci@team12.dev.softwareengineeringii.com "./deploy_frontend.sh"
