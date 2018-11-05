@@ -202,14 +202,32 @@ div.right-view{
 }
 
 div.right-view section{
-    padding: 60px 40px;
+    padding: 40px 40px;
+}
+
+div.right-view section select.nice-select{
+    margin: auto;
+    display: block;
+    padding: 10px 3px;
+    width: 255px;
+    font-family: Montserrat;
+}
+
+div.right-view section form{
+    text-align: left;
+    background: #fff0cc;
+    padding: 20px;
+    border-radius: 3px;
+    max-width: 500px;
+    margin: auto;
+    margin-bottom: 40px;
 }
 
 div.right-view section h3{
     text-align: center;
     font-family: montserrat;
     padding: 40px;
-    padding-top: 0;
+    padding-top: 20px;
     font-size: 26px;
 }
 .dataTables_wrapper{
@@ -217,6 +235,14 @@ div.right-view section h3{
     margin: auto;
 }
 
+.clearfix {
+  clear: both;
+}
+.clearfix:after {
+  clear: both; 
+  content: "";
+  display: table; 
+}
 
 
 @media screen and (max-width: 900px){

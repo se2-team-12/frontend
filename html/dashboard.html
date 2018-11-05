@@ -31,14 +31,14 @@
 
 </head>
 
-<body>
+<body class="dashboard">
 
 	<header class="header">
 		<span>St Edward's University</span>
 		<span>Software Engineering II</span>
 		<span>Team 12</span>
 	</header>
-	<div class="content">
+	<div class="content clearfix" >
 
 
 	<div class="nav">
@@ -96,14 +96,15 @@
 
 
 			<h3>On Demand Diagnostics</h3>
-			<select id="diagnosticSelect">
-				<option value="cpuBattery.py">Battery %</option>
-				<option value="memory.py">Memory Test</option>
-				<option value="cpuCount.py">Cpu Count Test</option>
-			</select>
+			<form id="onDemandDiagnostic">
+				<select class="nice-select" id="diagnosticSelect">
+					<option value="battery.py">Battery %</option>
+					<option value="memory.py">Memory Test</option>
+					<option value="cpuCount.py">Cpu Count Test</option>
+				</select>
 
-			<button type="button" id="onDemandDiagnostic">On Demand Diagnostic</button>
-
+				<input type="submit" value="Request Diagnostic">
+			</form>
 			<table id="gateway-onDemand-table" class="display">
 			    <thead>
 			        <tr>
@@ -117,16 +118,17 @@
 
 
 			<h3>Daily Diagnostics</h3>
-			<select id="diagnosticSelect">
-				<option value="cpuBattery.py">Battery %</option>
-				<option value="memory.py">Memory Test</option>
-				<option value="cpuCount.py">Cpu Count Test</option>
-			</select>
+			<form id="daily-diagnostic-form">
+				<select class="nice-select" id="dailyDiagnosticSelect">
+					<option value="battery.py">Battery %</option>
+					<option value="memory.py">Memory Test</option>
+					<option value="cpuCount.py">Cpu Count Test</option>
+				</select>
+				<input type="time" id="diagnostic-time" name="time"
+                value="12:00"/>
 
-
-
-			<input type="submit" value="Update Daily Diagnostic">
-
+				<input type="submit" value="Update Daily Diagnostic">
+			</form>
 			<table id="gateway-dailyDiagnostic-table" class="display">
 			    <thead>
 			        <tr>
@@ -157,7 +159,7 @@
 		<section id="software-download" style="display: none;">
 			<h3>Upload Custom Diagnostic Software</h3>
 			<form id="software-download-form">
-				<select name="gatewayID">
+				<select class="nice-select" name="gatewayID">
 					<!-- <option value="1234">Gateway 1234</option> -->
 				</select>
 				<span>Please select a python file to upload

@@ -25,13 +25,20 @@ $(document).ready(function(){
 
 		$.ajax({
   			type: "POST",
-  			url: "https://team12.dev.softwareengineeringii.com/api/clientSide/user",
+  			url: "https://team12.dev.softwareengineeringii.com/api/clientSide/register",
   			data: formData,
   			success: function(msg){
         		alert( "Data Saved: " + msg );
   			},
   			error: function(XMLHttpRequest, textStatus, errorThrown) {
-     			alert("some error" + errorThrown + textStatus);
+     			let errorJSON = XMLHttpRequest.responseJSON;
+
+     			let errorCode = errorJSON.error.code;
+
+     			console.log(errorCode);
+     			if(errorCode == 11000){
+     				alert("Email already in use. Try a different email");
+     			}
   			}
 		});
 		
@@ -42,17 +49,29 @@ $(document).ready(function(){
 		let formData = $(this).serializeArray();
 		$.ajax({
   			type: "POST",
-  			url: "https://team12.dev.softwareengineeringii.com/api/clientSide/users/login",
+  			url: "https://team12.dev.softwareengineeringii.com/api/clientSide/login",
   			data: formData,
   			success: function(msg){
-        		window.location.href = "./dashboard.html";
+
+  				if(msg.status == 0){
+  					alert("Email and Password did not match. Please try again");
+  				}
+  				else if (msg.status == 1){
+  					window.location.href = "./dashboard.html";
+  				}
+        		
   			},
   			error: function(XMLHttpRequest, textStatus, errorThrown) {
-     			alert("some error");
+     			// let errorJSON = XMLHttpRequest.responseJSON;
+
+     			// let errorCode = errorJSON.error.code;
+
+     			// console.log(errorCode);
+     			alert("Something went wrong! Try again in a bit");
   			}
 		});
 
-
-		
 	});
+
+
 });

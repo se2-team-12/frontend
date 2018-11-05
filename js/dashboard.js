@@ -1,6 +1,7 @@
 $(document).ready( function () {
 
-	const userGateways = ["5bde6bf82c7ac54bbdf5bb85"];
+	const userGateways = ["5bde6bf82c7ac54bbdf5bb85", "5bde7e392c7ac54bbdf5bbaa"];
+	const names = ["test", "Batool"];
 	let inView = "dashboard-view";
 	
 
@@ -13,6 +14,8 @@ $(document).ready( function () {
 	
 	function initGatewaysDashboard(){
 
+		
+
 		let navHtml = "";
 		let dashboardTable = $('#gateway-table').DataTable({
 			  'createdRow': function( row, data, dataIndex ) {
@@ -24,7 +27,7 @@ $(document).ready( function () {
 			let gatewayId = userGateways[i];
 			navHtml += '<li class="nav-item" data-id="gateway-focus" data-gateway-id="' + gatewayId + '">Gateway ' + (i+1) + '</li>'
 			
-			dashboardTable.row.add([i + 1, 'Alpha']).draw();
+			dashboardTable.row.add([i + 1, names[i]]).draw();
 
 			$("#software-download-form select").append("<option value='" + gatewayId + "'>Gateway " + (i+1) + "</option>")
 		}
@@ -124,6 +127,9 @@ $(document).ready( function () {
 
 	function createNewGateway(){
 
+
+		let url = "https://team12.dev.softwareengineeringii.com/api/clientSide/createNewGateway"
+
 	}
 
 
@@ -161,15 +167,53 @@ $(document).ready( function () {
 	
 	});
 
-	$("#onDemandDiagnostic").click(function(){
+	$("#onDemandDiagnostic").submit(function(e){
+		e.preventDefault();
 		const diagnostic = $("#diagnosticSelect").val();
 		const gatewayId = gatewayInFocus;
 
 		$.post( "https://team12.dev.softwareengineeringii.com/api/clientSide", { ODD: diagnostic, GatewayId: gatewayId })
 		  .done(function( data ) {
-		    alert( "Data Loaded: " + data );
+		    alert( "Diagnostic Request Sent!");
 
 		});
+
+	});
+
+	$("#daily-diagnostic-form").submit(function(e){
+		e.preventDefault();
+		let formData = {};
+		let diagnostic = $("#dailyDiagnosticSelect").val();
+
+		let time = $("#diagnostic-time").val().split(":");
+
+		let hour = time[0];
+		let minute = time[1];
+
+		formData["Type"] = diagnostic;
+		formData["DDD"] = diagnostic;
+		formData["GatewayId"] = gatewayInFocus;
+		formData["dailyHour"] = hour;
+		formData["dailyMin"] = minute;
+		formData["dailySecond"] = "00";
+
+		//console.log(formData);
+
+		let url =  "https://team12.dev.softwareengineeringii.com/api/clientSide/dailyDiagnostic";
+
+		$.ajax({
+  			type: "POST",
+  			url: url,
+  			data: formData,
+  			success: function(msg){
+        		console.log(msg);
+        		alert("Update Successful!");
+  			},
+  			error: function(XMLHttpRequest, textStatus, errorThrown) {
+     			alert(errorThrown);
+  			}
+		});
+
 
 	});
 
