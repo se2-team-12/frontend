@@ -50,36 +50,78 @@ $(document).ready( function () {
 
 			// $("section#gateway-focus h3#gateway-label").text("Gateway " + gatewayId);
 
-			// let ajaxUrl = "https://team12.dev.softwareengineeringii.com/api/clientSide/" + gatewayId;
+			let timestampAjax = "https://team12.dev.softwareengineeringii.com/api/clientSide/" + gatewayId;
+			// 
+let timestampData = [];
+			// $.get( timestampAjax, function( data ) {
+  	// 			timestampData = data;
+  				
+			// });
 
-			// gatewayFocusTable = $('#gateway-focus-table').DataTable( {
-   //  			ajax: {
-   //      			url: ajaxUrl,
-   //      			dataSrc: function (json) {
-		 //      					var return_data = new Array();
-		 //      					for(var i=0;i< json.length; i++){
+			// $('.eventcontrol').EventControl({
+		 //  		hammertime: true,
+		 //  		onhover: function(item, element, event, inout) {
+		 //    		if (inout == 'out') {
+		 //      			$('.eventcontrol-target').html('');
+		 //      			element.css('color', element.data('clr'));
+		 //    		} 
+		 //    		else {
+		 //      			var x = ['<h2>', moment(item.timestamp).format('YYYY-MM-DD HH:mm:ss'), '</h2>'];
+			// 	    	$('.eventcontrol-target').html(x.join(''));
+			// 		    $('.eventcontrol-target').css('color', element.css('color'));
+			// 		    element.data('clr', element.css('color'));
+			// 		    element.css('color', '#9b59b6');
+		 //    		}
+		 //  		},
+			// 	 onclick: function(item, element, event) {
+			// 	    alert(item.timestamp);
+			// 	  },
+		 //  data: [
+		 //    {
+		 //    "timestamp": "2016-03-02T10:57:03+01:00",
+		 //    },
+		 //    {
+		 //    "timestamp": "2016-03-02T11:10:39+01:00",
+		 //      "type": "",
+		 //    },
+		 //    {
+		 //    "timestamp": "2016-03-02T12:56:32+01:00",
+		 //    "type": "",
+		 //    }
 
-		 //      						if(json[i].TimeStamp){
-		 //      							var timeEpoch = json[i].TimeStamp;
-		 //      							var d = new Date(0);
-		 //      							d.setUTCSeconds(timeEpoch);
+		 //    ]
 
-		 //        						return_data.push({
-			// 			          			'GatewayId': json[i].GatewayId,
-			// 			          			'TimeStamp' : d.toLocaleString(),
-		 //        						})
-		 //      						}
+			// });
+			if(gatewayFocusTable){
+				gatewayFocusTable.destroy();
+			}
+
+			gatewayFocusTable = $('#gateway-focus-table').DataTable( {
+    			ajax: {
+        			url: timestampAjax,
+        			dataSrc: function (json) {
+		      					var return_data = new Array();
+		      					for(var i=0;i< json.length; i++){
+
+		      						if(json[i].TimeStamp){
+		      							var timeEpoch = json[i].TimeStamp;
+		      							var d = new Date(0);
+		      							d.setUTCSeconds(timeEpoch);
+
+		        						return_data.push({
+						          			'TimeStamp' : d.toLocaleString(),
+		        						})
+		      						}
 		      						
-		 //      					}
-		 //      					return return_data;
-   //  						}
-   //  			},
-   //  			columns: [
-			//         { data: "GatewayId" },
-			//         { data: "TimeStamp" },
-   //  			],
-   //  			"order": [[1, 'desc']]
-			// } );
+		      					}
+		      					return return_data;
+    						}
+    			},
+    			columns: [
+			        { data: "TimeStamp" },
+    			],
+    			"order": [[0, 'desc']]
+			} );
 
 			if(onDemandTable){
 				onDemandTable.destroy();
@@ -120,10 +162,36 @@ $(document).ready( function () {
 	    	} );
 
 
+
    	 	}});
 
 
-		dailyDiagnosticTable = $("#gateway-dailyDiagnostic-table").DataTable();
+		dailyDiagnosticTable = $("#gateway-dailyDiagnostic-table").DataTable( {
+    			ajax: {
+        			url:"https://team12.dev.softwareengineeringii.com/api/clientSide/dailyDiagnostic/" + gatewayId,
+        			dataSrc: function (json) {
+		      					var return_data = new Array();
+		      					for(var i=0;i< json.length; i++){
+
+		      						return_data.push({
+		      							Date: "11/4/2018",
+		      							Time: "",
+		      							Type: json[i].Type,
+		      							Result: json[i].Result
+		      						})
+		      						
+		      					}
+		      					return return_data;
+    						}
+    			},
+    			columns: [
+			        { data: "Date" },
+			        { data: "Time"},
+			        { data: "Type"},
+			        { data: "Result"}
+    			],
+    			"order": [[1, 'desc']]
+			} );
 		
 	}
 
@@ -220,49 +288,6 @@ $(document).ready( function () {
 	});
 
 
-	$('.eventcontrol').EventControl({
-  		hammertime: true,
-  		onhover: function(item, element, event, inout) {
-    		if (inout == 'out') {
-      			$('.eventcontrol-target').html('');
-      			element.css('color', element.data('clr'));
-    		} 
-    		else {
-      			var x = ['<h2>', moment(item.timestamp).format('YYYY-MM-DD HH:mm:ss'), '</h2>'];
-		    	$('.eventcontrol-target').html(x.join(''));
-			    $('.eventcontrol-target').css('color', element.css('color'));
-			    element.data('clr', element.css('color'));
-			    element.css('color', '#9b59b6');
-    		}
-  		},
-		  oncreate: function(item, element) {
-		    if (item.type == 'error') {
-		      element.css('color', '#e74c3c');
-		    } else if (item.type == 'warning') {
-		      element.css('color', '#e67e22');
-		    } else {
-		      element.css('color', '#1abc9c');
-		    }
-		  },
-		  onclick: function(item, element, event) {
-		    alert(item.timestamp);
-		  },
-  data: [
-    {
-    "timestamp": "2016-03-02T10:57:03+01:00",
-    "type": "warning",
-    },
-    {
-    "timestamp": "2016-03-02T11:10:39+01:00",
-      "type": "",
-    },
-    {
-    "timestamp": "2016-03-02T12:56:32+01:00",
-    "type": "",
-    }
-
-    ]
-
-	});
+	
 
 });	
