@@ -5,25 +5,40 @@
 	<meta name ="viewport" content = "width=device-width, initial-scale=1.0">
 	<meta name = "author" content ="Team 12">
 	<link rel="stylesheet" href ="../css/base.css" type = "text/css"/>
+
 	<title>Dashboard</title>
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-  		
+  	
+
+
 
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
   <script src="../js/dashboard.js"></script>
+
+
+  <script src="../js/hammer.min.js"></script>
+
+	<script src="../js/moment.min.js"></script>
+
+	<link href="../css/eventcontrol.css" rel="stylesheet">
+
+<script src="../js/eventcontrol.js"></script>
+
+
+
 </head>
 
-<body>
+<body class="dashboard">
 
 	<header class="header">
 		<span>St Edward's University</span>
 		<span>Software Engineering II</span>
 		<span>Team 12</span>
 	</header>
-	<div class="content">
+	<div class="content clearfix" >
 
 
 	<div class="nav">
@@ -32,11 +47,14 @@
 			<li class="nav-item" data-id="dashboard-view">Dashboard</li>
 			<li style="padding:0">
 				<ul id="nav-gateway-select">
-					<li class="nav-item" data-id="gateway-focus" data-gateway-id="1234">Gateway 1234</li>
+					<!-- <li class="nav-item" data-id="gateway-focus" data-gateway-id="1234">Gateway 1234</li> -->
 				</ul>
 			</li>
 			<li class="nav-item" data-id="gateway-register-view">
-				Register New Gateway
+				Create New Gateway
+			</li>
+			<li class="nav-item" data-id="software-download">
+				Upload New Diagnostic
 			</li>
 		</ul>
 
@@ -54,19 +72,13 @@
 			            <th>Name</th>
 			        </tr>
 			    </thead>
-			    <tbody>
-			        <tr data-id="1234">
-			            <td>1234</td>
-			            <td>Alpha</td>
-			        </tr>
-			    </tbody>
 			</table>
 
 		</section>
 
 		<section id="gateway-focus" style="display:none;">
 			<h3 id="gateway-label">Gateway</h3>
-			<button id="refresh-table" type="button">Refresh</button>
+			<!-- <button id="refresh-table" type="button">Refresh</button>
 			<table id="gateway-focus-table" class="display">
 			    <thead>
 			        <tr>
@@ -76,23 +88,55 @@
 			    </thead>
 			    <tbody>
 			    </tbody>
-			</table>
+			</table> -->
+
+			<div class="eventcontrol"></div>
+
+			<div class="eventcontrol-target"></div>
+
 
 			<h3>On Demand Diagnostics</h3>
-			<select id="diagnosticSelect">
-				<option value="cpuBattery.py">Battery %</option>
-				<option value="memory.py">Memory Test</option>
-				<option value="cpuCount.py">Cpu Count Test</option>
-			</select>
+			<form id="onDemandDiagnostic">
+				<select class="nice-select" id="diagnosticSelect">
+					<option value="battery.py">Battery %</option>
+					<option value="memory.py">Memory Test</option>
+					<option value="cpuCount.py">Cpu Count Test</option>
+				</select>
 
-			<button type="button" id="onDemandDiagnostic">On Demand Diagnostic</button>
-
+				<input type="submit" value="Request Diagnostic">
+			</form>
 			<table id="gateway-onDemand-table" class="display">
 			    <thead>
 			        <tr>
-			            <th>GatewayId</th>
                 		<th>Type</th>
                 		<th>Result</th>
+			        </tr>
+			    </thead>
+			    <tbody>
+			    </tbody>
+			</table>
+
+
+			<h3>Daily Diagnostics</h3>
+			<form id="daily-diagnostic-form">
+				<select class="nice-select" id="dailyDiagnosticSelect">
+					<option value="battery.py">Battery %</option>
+					<option value="memory.py">Memory Test</option>
+					<option value="cpuCount.py">Cpu Count Test</option>
+				</select>
+				<input type="time" id="diagnostic-time" name="time"
+                value="12:00"/>
+
+				<input type="submit" value="Update Daily Diagnostic">
+			</form>
+			<table id="gateway-dailyDiagnostic-table" class="display">
+			    <thead>
+			        <tr>
+			        	<th>Date</th>
+			        	<th>Time</th>
+                		<th>Type</th>
+                		<th>Result</th>
+
 			        </tr>
 			    </thead>
 			    <tbody>
@@ -102,8 +146,26 @@
 		</section>
 
 		<section id="gateway-register-view" style="display: none;">
-			<h3>Register Gateway</h3>
+			<h3>Create Gateway</h3>
 
+			<form id="register-gateway">
+				<div id="reigster-gateway-response"></div>
+				<button id="register-gateway">Download Gateway Code!</button>
+
+			</form>
+
+		</section>
+
+		<section id="software-download" style="display: none;">
+			<h3>Upload Custom Diagnostic Software</h3>
+			<form id="software-download-form">
+				<select class="nice-select" name="gatewayID">
+					<!-- <option value="1234">Gateway 1234</option> -->
+				</select>
+				<span>Please select a python file to upload
+  				<input type="file" name="diagnostic"  accept=".py">
+  				<input type="submit" value="Upload Diagnostic Code">
+			</form>
 		</section>
 	</div>
 
