@@ -100,7 +100,8 @@ $(document).ready( function () {
      		for(var i in result) {
      			let item = result[i];
 
-  				if(item["IsClear"] == true && item["Type"]){
+     			//item["IsClear"] == true && 
+  				if(item["Type"]){
 
   					let dataRow = [item["Type"], item["Result"]]
   					dataSet.push(dataRow);
