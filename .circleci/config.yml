@@ -6,3 +6,4 @@ jobs:
     steps:
       - checkout
       - run: ssh -oStrictHostKeyChecking=no circleci@team12.dev.softwareengineeringii.com "./deploy_frontend.sh"
+      
