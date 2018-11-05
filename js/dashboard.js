@@ -173,12 +173,15 @@ let timestampData = [];
 		      					var return_data = new Array();
 		      					for(var i=0;i< json.length; i++){
 
-		      						return_data.push({
-		      							Date: "11/4/2018",
-		      							Time: "",
-		      							Type: json[i].Type,
-		      							Result: json[i].Result
-		      						})
+		      						if(json[i].Result){
+		      							return_data.push({
+			      							Date: "11/4/2018",
+			      							Time: "",
+			      							Type: json[i].Type,
+			      							Result: json[i].Result
+		      							})
+		      						}
+		      						
 		      						
 		      					}
 		      					return return_data;
