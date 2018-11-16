@@ -25,7 +25,7 @@ $(document).ready(function(){
 
 		$.ajax({
   			type: "POST",
-  			url: "https://team12.dev.softwareengineeringii.com/api/clientSide/register",
+  			url: "https://team12.dev.softwareengineeringii.com/api/users/signup",
   			data: formData,
   			success: function(msg){
         		alert( "Data Saved: " + msg );
@@ -49,14 +49,22 @@ $(document).ready(function(){
 		let formData = $(this).serializeArray();
 		$.ajax({
   			type: "POST",
-  			url: "https://team12.dev.softwareengineeringii.com/api/clientSide/login",
+  			url: "https://team12.dev.softwareengineeringii.com/api/users/login",
   			data: formData,
   			success: function(msg){
 
   				if(msg.status == 0){
   					alert("Email and Password did not match. Please try again");
   				}
+
   				else if (msg.status == 1){
+
+            let token = msg.token;
+            let email = msg.email;
+
+            setCookie("team12softwaretoken", token, 1);
+            setCookie("team12softwareuseremail", email, 1);
+
   					window.location.href = "./dashboard.html";
   				}
         		
@@ -72,6 +80,13 @@ $(document).ready(function(){
 		});
 
 	});
+
+  function setCookie(cname, cvalue, exhours) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exhours*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
 
 
 });

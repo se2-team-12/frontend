@@ -1,5 +1,10 @@
 $(document).ready( function () {
 
+	let useremail;
+	let usertoken;
+
+	checkCookie();
+
 	const userGateways = ["5bde6bf82c7ac54bbdf5bb85", "5bde7e392c7ac54bbdf5bbaa"];
 	const names = ["test", "Batool"];
 	let inView = "dashboard-view";
@@ -11,6 +16,46 @@ $(document).ready( function () {
 	let gatewayFocusTable;
 	let onDemandTable;
 	let dailyDiagnosticTable;
+
+	function checkCookie() {
+	    useremail = getCookie("team12softwareuseremail");
+	    usertoken = getCookie("team12softwaretoken");
+	    if (useremail != "") {
+	        alert("Welcome");
+
+	        //get usergateways
+	        $.get("https://team12.dev.softwareengineeringii.com/api/clientSide/gateways/" + useremail, function( data ) {
+  				
+  				for (var i = data.length - 1; i >= 0; i--) {
+  					let gatewayId = data[i].GatewayId;
+
+  					userGateways.push(gatewayId);
+  				}
+  				
+  				
+			});
+
+	        initGatewaysDashboard();
+
+	    } else {
+	        window.location.href = "./index.html";
+	    }
+	}
+
+	function getCookie(cname) {
+	    var name = cname + "=";
+	    var ca = document.cookie.split(';');
+	    for(var i = 0; i < ca.length; i++) {
+	        var c = ca[i];
+	        while (c.charAt(0) == ' ') {
+	            c = c.substring(1);
+	        }
+	        if (c.indexOf(name) == 0) {
+	            return c.substring(name.length, c.length);
+	        }
+	    }
+	    return "";
+	}
 	
 	function initGatewaysDashboard(){
 
@@ -52,44 +97,49 @@ $(document).ready( function () {
 
 			let timestampAjax = "https://team12.dev.softwareengineeringii.com/api/clientSide/" + gatewayId;
 			// 
-let timestampData = [];
-			// $.get( timestampAjax, function( data ) {
-  	// 			timestampData = data;
+
+			let timeStampData = [];
+
+			$.get( timestampAjax, function( data ) {
   				
-			// });
+  				for (var i = data.length - 1; i >= 0; i--) {
+  					let date = new Date(0);
+  					date.setUTCSeconds(data[i].TimeStamp)
+  					date = date.toISOString();
 
-			// $('.eventcontrol').EventControl({
-		 //  		hammertime: true,
-		 //  		onhover: function(item, element, event, inout) {
-		 //    		if (inout == 'out') {
-		 //      			$('.eventcontrol-target').html('');
-		 //      			element.css('color', element.data('clr'));
-		 //    		} 
-		 //    		else {
-		 //      			var x = ['<h2>', moment(item.timestamp).format('YYYY-MM-DD HH:mm:ss'), '</h2>'];
-			// 	    	$('.eventcontrol-target').html(x.join(''));
-			// 		    $('.eventcontrol-target').css('color', element.css('color'));
-			// 		    element.data('clr', element.css('color'));
-			// 		    element.css('color', '#9b59b6');
-		 //    		}
-		 //  		},
-			// 	 onclick: function(item, element, event) {
-			// 	    alert(item.timestamp);
-			// 	  },
-		 //  data: [
-		 //    {
-		 //    "timestamp": "2016-03-02T10:57:03+01:00",
-		 //    },
-		 //    {
-		 //    "timestamp": "2016-03-02T11:10:39+01:00",
-		 //      "type": "",
-		 //    },
-		 //    {
-		 //    "timestamp": "2016-03-02T12:56:32+01:00",
-		 //    "type": "",
-		 //    }
+  					let dataitem = {"timestamp" : date, "type" : "heartbeat"};
+  					
+  					timeStampData.push(dataitem);
+  				}
+  				
+  				
+			});
 
-		 //    ]
+			console.log(timeStampData)
+
+
+
+			$('.eventcontrol').EventControl({
+		  		hammertime: true,
+		  		onhover: function(item, element, event, inout) {
+		    		if (inout == 'out') {
+		      			$('.eventcontrol-target').html('');
+		      			element.css('color', element.data('clr'));
+		    		} 
+		    		else {
+		      			var x = ['<h2>', moment(item.timestamp).format('YYYY-MM-DD HH:mm:ss'), '</h2>'];
+				    	$('.eventcontrol-target').html(x.join(''));
+					    $('.eventcontrol-target').css('color', element.css('color'));
+					    element.data('clr', element.css('color'));
+					    element.css('color', '#9b59b6');
+		    		}
+		  		},
+				onclick: function(item, element, event) {
+				    alert(item.timestamp);
+				  },
+		  		data: timeStampData
+
+		});
 
 			// });
 			if(gatewayFocusTable){
@@ -204,10 +254,6 @@ let timestampData = [];
 		let url = "https://team12.dev.softwareengineeringii.com/api/clientSide/createNewGateway"
 
 	}
-
-
-
-	initGatewaysDashboard();
 
 
 
