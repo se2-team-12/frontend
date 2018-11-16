@@ -25,21 +25,22 @@ $(document).ready(function(){
 
 		$.ajax({
   			type: "POST",
-  			url: "https://team12.dev.softwareengineeringii.com/api/users/signup",
+  			url: "https://team12.dev.softwareengineeringii.com/api/tokenUser/signup",
   			data: formData,
   			success: function(msg){
         		alert( "Data Saved: " + msg );
   			},
-  			error: function(XMLHttpRequest, textStatus, errorThrown) {
-     			let errorJSON = XMLHttpRequest.responseJSON;
+  			// error: function(XMLHttpRequest, textStatus, errorThrown) {
+     // 			let errorJSON = XMLHttpRequest.responseJSON;
 
-     			let errorCode = errorJSON.error.code;
+     // 			let errorCode = errorJSON.error.code;
 
-     			console.log(errorCode);
-     			if(errorCode == 11000){
-     				alert("Email already in use. Try a different email");
-     			}
-  			}
+     //      console.log(errorJSON);
+     // 			console.log(errorCode);
+     // 			if(errorCode == 11000){
+     // 				alert(errorThrown + textStatus);
+     // 			}
+  			// }
 		});
 		
 	});
@@ -49,7 +50,7 @@ $(document).ready(function(){
 		let formData = $(this).serializeArray();
 		$.ajax({
   			type: "POST",
-  			url: "https://team12.dev.softwareengineeringii.com/api/users/login",
+  			url: "https://team12.dev.softwareengineeringii.com/api/tokenUser/login",
   			data: formData,
   			success: function(msg){
 
