@@ -76,7 +76,7 @@ $(document).ready( function () {
 			let gatewayId = userGateways[i];
 			navHtml += '<li class="nav-item" data-id="gateway-focus" data-gateway-id="' + gatewayId + '">Gateway ' + (i+1) + '</li>'
 			
-			//dashboardTable.row.add([i + 1, names[i]]).draw();
+			dashboardTable.row.add([i + 1]).draw();
 
 			$("#software-download-form select").append("<option value='" + gatewayId + "'>Gateway " + (i+1) + "</option>")
 		}
