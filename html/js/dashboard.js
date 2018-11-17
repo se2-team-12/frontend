@@ -83,6 +83,8 @@ $(document).ready( function () {
 
 		$("#nav-gateway-select").html(navHtml);
 
+		initEventListeners();
+
 	}
 
 	function focusGateway(gatewayId){
@@ -258,6 +260,7 @@ $(document).ready( function () {
 	}
 
 
+function initEventListeners(){
 	$("div.nav li.nav-item").click(function(){
 
 		let navValue = $(this).attr("data-id");
@@ -366,6 +369,8 @@ $(document).ready( function () {
 		  }
 		});
 	});
+
+}
 
 	
 
