@@ -28,19 +28,19 @@ $(document).ready(function(){
   			url: "https://team12.dev.softwareengineeringii.com/api/tokenUser/signup",
   			data: formData,
   			success: function(msg){
-        		alert( "Data Saved: " + msg );
+        		alert( "Account created!" );
   			},
-  			// error: function(XMLHttpRequest, textStatus, errorThrown) {
-     // 			let errorJSON = XMLHttpRequest.responseJSON;
+  			error: function(XMLHttpRequest, textStatus, errorThrown) {
+     			let errorJSON = XMLHttpRequest.responseJSON;
 
-     // 			let errorCode = errorJSON.error.code;
+     			let errorCode = errorJSON.error.code;
 
-     //      console.log(errorJSON);
-     // 			console.log(errorCode);
-     // 			if(errorCode == 11000){
-     // 				alert(errorThrown + textStatus);
-     // 			}
-  			// }
+          console.log(errorJSON);
+     			console.log(errorCode);
+     			if(errorCode == 11000){
+     				alert(errorThrown + textStatus);
+     			}
+  			}
 		});
 		
 	});
@@ -62,6 +62,8 @@ $(document).ready(function(){
 
             let token = msg.token;
             let email = msg.email;
+
+            //console.log(token + email);
 
             setCookie("team12softwaretoken", token, 1);
             setCookie("team12softwareuseremail", email, 1);

@@ -3,10 +3,14 @@ $(document).ready( function () {
 	let useremail;
 	let usertoken;
 
-	checkCookie();
+	
 
 	const userGateways = ["5bde6bf82c7ac54bbdf5bb85", "5bde7e392c7ac54bbdf5bbaa"];
 	const names = ["test", "Batool"];
+
+	checkCookie();
+
+	
 	let inView = "dashboard-view";
 	
 
