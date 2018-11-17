@@ -349,7 +349,7 @@ $(document).ready( function () {
 	$("#register-gateway").submit(function(e){
 		e.preventDefault();
 
-		let formData = { email = useremail};
+		let formData = { email : useremail};
 
 		$.ajax({
 		  type: "POST",
@@ -361,8 +361,8 @@ $(document).ready( function () {
 		  success: function(msg) {
 		    console.log(msg);
 		  }
+		});
 	});
-
 
 	
 
