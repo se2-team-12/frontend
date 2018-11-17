@@ -180,7 +180,7 @@ $(document).ready( function () {
 			setInterval( function () {
 				console.log("reload");
     			gatewayFocusTable.ajax.reload( null, false ); // user paging is not reset on reload
-			}, 30000 );
+			}, 5000 );
 
 			if(onDemandTable){
 				onDemandTable.destroy();
@@ -257,14 +257,6 @@ $(document).ready( function () {
 		
 	}
 
-	function createNewGateway(){
-
-
-		let url = "https://team12.dev.softwareengineeringii.com/api/clientSide/createNewGateway"
-
-	}
-
-
 
 	$("div.nav li.nav-item").click(function(){
 
@@ -303,6 +295,15 @@ $(document).ready( function () {
 		$.post( "https://team12.dev.softwareengineeringii.com/api/clientSide", { ODD: diagnostic, GatewayId: gatewayId })
 		  .done(function( data ) {
 		    alert( "Diagnostic Request Sent!");
+
+		    setTimeout(function(){
+		    	if(onDemandTable){
+					onDemandTable.destroy();
+				}
+			
+				loadFocusGatewayData(gatewayId);
+
+		    }, 3000);
 
 		});
 
@@ -343,6 +344,23 @@ $(document).ready( function () {
 		});
 
 
+	});
+
+	$("#register-gateway").submit(function(e){
+		e.preventDefault();
+
+		formData = { email = useremail}
+
+		$.ajax({
+		  type: "POST",
+		  beforeSend: function(request) {
+		    request.setRequestHeader("Token", usertoken);
+		  },
+		  url: "https://team12.dev.softwareengineeringii.com/api/clientSide/createGateway",
+		  data: formData,
+		  success: function(msg) {
+		    console.log(msg);
+		  }
 	});
 
 
