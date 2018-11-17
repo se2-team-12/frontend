@@ -10,7 +10,7 @@ $(document).ready( function () {
 
 	checkCookie();
 
-	
+
 	let inView = "dashboard-view";
 	
 
@@ -176,6 +176,11 @@ $(document).ready( function () {
     			],
     			"order": [[0, 'desc']]
 			} );
+
+			setInterval( function () {
+				console.log("reload");
+    			gatewayFocusTable.ajax.reload( null, false ); // user paging is not reset on reload
+			}, 30000 );
 
 			if(onDemandTable){
 				onDemandTable.destroy();
