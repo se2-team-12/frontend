@@ -5,8 +5,8 @@ $(document).ready( function () {
 
 	
 
-	const userGateways = ["5bde6bf82c7ac54bbdf5bb85", "5bde7e392c7ac54bbdf5bbaa"];
-
+	//const userGateways = ["5bde6bf82c7ac54bbdf5bb85", "5bde7e392c7ac54bbdf5bbaa"];
+	const userGateways = [];
 	checkCookie();
 
 
