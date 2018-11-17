@@ -6,7 +6,6 @@ $(document).ready( function () {
 	
 
 	const userGateways = ["5bde6bf82c7ac54bbdf5bb85", "5bde7e392c7ac54bbdf5bbaa"];
-	const names = ["test", "Batool"];
 
 	checkCookie();
 
@@ -77,7 +76,7 @@ $(document).ready( function () {
 			let gatewayId = userGateways[i];
 			navHtml += '<li class="nav-item" data-id="gateway-focus" data-gateway-id="' + gatewayId + '">Gateway ' + (i+1) + '</li>'
 			
-			dashboardTable.row.add([i + 1, names[i]]).draw();
+			//dashboardTable.row.add([i + 1, names[i]]).draw();
 
 			$("#software-download-form select").append("<option value='" + gatewayId + "'>Gateway " + (i+1) + "</option>")
 		}
