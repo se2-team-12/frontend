@@ -83,6 +83,27 @@ $(document).ready( function () {
 
 		$("#nav-gateway-select").html(navHtml);
 
+			$("div.nav li.nav-item").click(function(){
+
+			let navValue = $(this).attr("data-id");
+
+			console.log(navValue);
+					
+			if(navValue == "gateway-focus"){
+				let gatewayId = $(this).attr("data-gateway-id");
+				focusGateway(gatewayId);
+			}
+
+			else if(navValue != inView){
+				$("section#"+inView).fadeOut();
+				setTimeout(function(){ $("section#" + navValue).fadeIn();}, 400);
+			}
+
+			inView = navValue;
+						
+		});
+
+
 	}
 
 	function focusGateway(gatewayId){
@@ -256,28 +277,6 @@ $(document).ready( function () {
 			} );
 		
 	}
-
-
-	$("div.nav li.nav-item").click(function(){
-
-		let navValue = $(this).attr("data-id");
-
-		console.log(navValue);
-				
-		if(navValue == "gateway-focus"){
-			let gatewayId = $(this).attr("data-gateway-id");
-			focusGateway(gatewayId);
-		}
-
-		else if(navValue != inView){
-			$("section#"+inView).fadeOut();
-			setTimeout(function(){ $("section#" + navValue).fadeIn();}, 400);
-		}
-
-		inView = navValue;
-					
-	});
-
 	   		
 
 	$("#gateway-table tbody tr").click(function (e) {
