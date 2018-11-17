@@ -25,21 +25,22 @@ $(document).ready( function () {
 	    useremail = getCookie("team12softwareuseremail");
 	    usertoken = getCookie("team12softwaretoken");
 	    if (useremail != "") {
-	        alert("Welcome");
 
 	        //get usergateways
 	        $.get("https://team12.dev.softwareengineeringii.com/api/clientSide/gateways/" + useremail, function( data ) {
-  				
+  				console.log(data);
   				for (var i = data.length - 1; i >= 0; i--) {
   					let gatewayId = data[i].GatewayId;
 
   					userGateways.push(gatewayId);
   				}
+
+  				initGatewaysDashboard();
   				
   				
 			});
 
-	        initGatewaysDashboard();
+	        
 
 	    } else {
 	        window.location.href = "./index.html";
@@ -359,7 +360,9 @@ $(document).ready( function () {
 		  url: "https://team12.dev.softwareengineeringii.com/api/clientSide/createGateway",
 		  data: formData,
 		  success: function(msg) {
-		    console.log(msg);
+
+		  	$("#reigster-gateway-response").html("<h4>Save this unique gateway ID to initilize your new gateway: </h4> <br/> " + msg.GatewayId)
+		    //console.log(msg);
 		  }
 		});
 	});
