@@ -262,7 +262,7 @@ $(document).ready( function () {
 
 		let navValue = $(this).attr("data-id");
 
-		console.log(navValue)
+		console.log(navValue);
 				
 		if(navValue == "gateway-focus"){
 			let gatewayId = $(this).attr("data-gateway-id");
