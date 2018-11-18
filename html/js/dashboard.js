@@ -299,11 +299,11 @@ function initEventListeners(){
 		$.post( "https://team12.dev.softwareengineeringii.com/api/clientSide", { ODD: diagnostic, GatewayId: gatewayId })
 		  .done(function( data ) {
 		    alert( "Diagnostic Request Sent!");
-
+		   
+			onDemandTable.destroy();
+			
 		    setTimeout(function(){
-		    	if(onDemandTable){
-					onDemandTable.destroy();
-				}
+		    	
 			
 				loadFocusGatewayData(gatewayId);
 
