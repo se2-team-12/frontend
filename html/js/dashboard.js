@@ -370,7 +370,7 @@ function initEventListeners(){
 		  success: function(msg) {
 
 		  	$("#reigster-gateway-response").html("<h4>Save this unique gateway ID to initilize your new gateway: </h4> <br/> " + msg.GatewayId)
-		    //console.log(msg);
+		    console.log(msg);
 		  }
 		});
 	});
