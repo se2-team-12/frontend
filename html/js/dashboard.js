@@ -81,7 +81,7 @@ $(document).ready( function () {
 
 			let alertArray = ["warning", "good", "error"]
 
-			dashboardTable.row.add([i + 1, "<span class='notification" + alertArray[randomdigit] + "'>" + alertArray[randomdigit] + "</span>"]).draw();
+			dashboardTable.row.add([i + 1, "<span class='notification " + alertArray[randomdigit] + "'>" + alertArray[randomdigit] + "</span>"]).draw();
 
 			$("#software-download-form select").append("<option value='" + gatewayId + "'>Gateway " + (i+1) + "</option>")
 		}
