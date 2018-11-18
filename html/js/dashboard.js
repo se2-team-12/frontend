@@ -77,7 +77,11 @@ $(document).ready( function () {
 			let gatewayId = userGateways[i];
 			navHtml += '<li class="nav-item" data-id="gateway-focus" data-gateway-id="' + gatewayId + '">Gateway ' + (i+1) + '</li>'
 			
-			dashboardTable.row.add([i + 1, "<span class='notification warning'>Warning</span>"]).draw();
+			let randomdigit = Math.floor(Math.random() * 3);
+
+			let alertArray = ["warning", "good", "error"]
+
+			dashboardTable.row.add([i + 1, "<span class='notification" + alertArray[randomdigit] + "'>" + alertArray[randomdigit] + "</span>"]).draw();
 
 			$("#software-download-form select").append("<option value='" + gatewayId + "'>Gateway " + (i+1) + "</option>")
 		}

@@ -244,6 +244,18 @@ div.right-view section h3{
   display: table; 
 }
 
+span.warning{
+    color: yellow;
+}
+
+span.good{
+    color: green;
+}
+
+span.error{
+    color: red;
+}
+
 
 @media screen and (max-width: 900px){
     div.nav{
