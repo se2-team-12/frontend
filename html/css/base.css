@@ -61,6 +61,12 @@ header.header, footer{
     padding: 10px;
     text-align: center;
     clear: both;
+    position: fixed;
+    width: 100%;
+}
+
+footer{
+    bottom: 0;
 }
 
 .header span, footer span{
@@ -254,6 +260,15 @@ span.good{
 
 span.error{
     color: red;
+}
+
+div.container{
+    position: fixed;
+    width: 22.2%;
+    top: 0;
+    height: 100vh;
+    background: wheat;
+    margin-top: 36px;
 }
 
 
