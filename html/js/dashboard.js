@@ -312,8 +312,14 @@ function initEventListeners(){
 		}
 
 		else if(navValue != inView){
+
 			$("section#"+inView).fadeOut();
-			setTimeout(function(){ $("section#" + navValue).fadeIn();}, 400);
+			setTimeout(function(){ 
+				$("section#" + navValue).fadeIn(); 
+				if(navValue == "data-viz"){
+					$("section#" + navValue).html('<iframe src="https://public.tableau.com/views/FakeDataViz/Sheet1??:showVizHome=no&:embed=true" height="500" width="900"></iframe>'); 
+				}
+			}, 400);
 		}
 
 		inView = navValue;
