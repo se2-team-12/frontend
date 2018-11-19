@@ -53,6 +53,7 @@ table {
 div.content{
     min-height: 85vh;
     height: 91vh;
+    margin-top: 36px;
 }
 header.header, footer{
 	/*background: #6c7282;*/
@@ -65,6 +66,9 @@ header.header, footer{
     width: 100%;
 }
 
+header{
+    top: 0;
+}
 footer{
     bottom: 0;
 }
