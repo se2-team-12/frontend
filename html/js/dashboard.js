@@ -28,7 +28,7 @@ $(document).ready( function () {
 	        //get usergateways
 	        $.get("https://team12.dev.softwareengineeringii.com/api/clientSide/gateways/" + useremail, function( data ) {
   				console.log(data);
-  				for (var i = data.length - 1; i >= 0; i--) {
+  				for (var i = 1; i < data.length; i++) {
   					let gatewayId = data[i].GatewayId;
 
   					userGateways.push(gatewayId);
@@ -393,7 +393,25 @@ function initEventListeners(){
 		});
 	});
 
+	$("#logout").click(function(){
+		logout();
+	});
+
 }
+
+function logout(){
+	setCookie("team12softwaretoken", "", 1);
+    setCookie("team12softwareuseremail", "", 1);
+
+  	window.location.href = "./index.html";
+}
+
+function setCookie(cname, cvalue, exhours) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exhours*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+ }
 
 	
 

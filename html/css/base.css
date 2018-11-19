@@ -74,6 +74,13 @@ footer{
     bottom: 0;
 }
 
+#logout{
+    position: absolute;
+    cursor: pointer;
+    right: 25px;
+    color: lightgrey;
+}
+
 .header span, footer span{
 	padding: 0 10px 0 0;
 	display: inline-block;
