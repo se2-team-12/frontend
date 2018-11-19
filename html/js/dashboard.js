@@ -322,10 +322,10 @@ function initEventListeners(){
 		  .done(function( data ) {
 		    alert( "Diagnostic Request Sent!");
 		   
-			onDemandTable.destroy();
+			
 			
 		    setTimeout(function(){
-		    	
+		    	onDemandTable.destroy();
 			
 				loadFocusGatewayData(gatewayId);
 
