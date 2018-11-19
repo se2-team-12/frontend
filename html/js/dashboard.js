@@ -229,6 +229,8 @@ $(document).ready( function () {
 			onDemandTable = $('#gateway-onDemand-table').DataTable( {
 	        	data: dataSet,
 	        	columns: [
+	        		{ title: "Date"},
+	        		{ title: "Time"},
 	            	{ title: "Type" },
 	            	{ title: "Result"}
 	        	]
