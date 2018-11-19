@@ -28,7 +28,7 @@ $(document).ready( function () {
 	    if (useremail != "") {
 
 	        //get usergateways
-	        $.get("https://team12.dev.softwareengineeringii.com/api/clientSide/gateways/" + useremail, function( data ) {
+	        $.get("./api/clientSide/gateways/" + useremail, function( data ) {
   				console.log(data);
   				for (var i = 0; i < data.length; i++) {
   					let gatewayId = data[i].GatewayId;
@@ -125,7 +125,7 @@ $(document).ready( function () {
 
 			// $("section#gateway-focus h3#gateway-label").text("Gateway " + gatewayId);
 
-			let timestampAjax = "https://team12.dev.softwareengineeringii.com/api/clientSide/" + gatewayId;
+			let timestampAjax = "./api/clientSide/" + gatewayId;
 			// 
 
 		// 	let timeStampData = [];
@@ -222,7 +222,7 @@ $(document).ready( function () {
 
 
 		//Load On Demand Diagnostics for Gateway id
-		$.ajax({url: "https://team12.dev.softwareengineeringii.com/api/clientSide/onDemand/" + gatewayId, success: function(result){
+		$.ajax({url: "./api/clientSide/onDemand/" + gatewayId, success: function(result){
      		let dataSet = [];
      		for(var i in result) {
      			let item = result[i];
@@ -263,7 +263,7 @@ $(document).ready( function () {
 
 		dailyDiagnosticTable = $("#gateway-dailyDiagnostic-table").DataTable( {
     			ajax: {
-        			url:"https://team12.dev.softwareengineeringii.com/api/clientSide/dailyDiagnostic/" + gatewayId,
+        			url:"./api/clientSide/dailyDiagnostic/" + gatewayId,
         			dataSrc: function (json) {
 		      					var return_data = new Array();
 		      					for(var i=0;i< json.length; i++){
@@ -344,7 +344,7 @@ function initEventListeners(){
 		const diagnostic = $("#diagnosticSelect").val();
 		const gatewayId = gatewayInFocus;
 
-		$.post( "https://team12.dev.softwareengineeringii.com/api/clientSide", { ODD: diagnostic, GatewayId: gatewayId })
+		$.post( "./api/clientSide", { ODD: diagnostic, GatewayId: gatewayId })
 		  .done(function( data ) {
 		    alert( "Diagnostic Request Sent!");
 		   
@@ -380,7 +380,7 @@ function initEventListeners(){
 
 		//console.log(formData);
 
-		let url =  "https://team12.dev.softwareengineeringii.com/api/clientSide/dailyDiagnostic";
+		let url =  "./api/clientSide/dailyDiagnostic";
 
 		$.ajax({
   			type: "POST",
@@ -408,7 +408,7 @@ function initEventListeners(){
 		  beforeSend: function(request) {
 		    request.setRequestHeader("Token", usertoken);
 		  },
-		  url: "https://team12.dev.softwareengineeringii.com/api/clientSide/createGateway",
+		  url: "./api/clientSide/createGateway",
 		  data: formData,
 		  success: function(msg) {
 
