@@ -233,7 +233,8 @@ $(document).ready( function () {
 	        		{ title: "Time"},
 	            	{ title: "Type" },
 	            	{ title: "Result"}
-	        	]
+	        	],
+	        	"order": [[1, 'desc']]
 	    	} );
 
 
