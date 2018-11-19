@@ -107,7 +107,14 @@ $(document).ready( function () {
 			
 			let index = userGateways.indexOf(gatewayId);
 			if(!shownAlert[index]){
-				console.log(alertType[index]);
+				if(alertType[index] == "warning"){
+					alert('warning!!!!');
+				}
+				else if(alertType[index] == "error"){
+					alert("error");
+				}
+
+				shownAlert[index] = true;
 			}
 
 			inView = "gateway-focus";
