@@ -25,7 +25,7 @@ $(document).ready(function(){
 
 		$.ajax({
   			type: "POST",
-  			url: "https://team12.dev.softwareengineeringii.com/api/tokenUser/signup",
+  			url: "./api/tokenUser/signup",
   			data: formData,
   			success: function(msg){
         		alert( "Account created!" );
@@ -50,7 +50,7 @@ $(document).ready(function(){
 		let formData = $(this).serializeArray();
 		$.ajax({
   			type: "POST",
-  			url: "https://team12.dev.softwareengineeringii.com/api/tokenUser/login",
+  			url: "./api/tokenUser/login",
   			data: formData,
   			success: function(msg){
 
