@@ -28,7 +28,7 @@ $(document).ready( function () {
 	        //get usergateways
 	        $.get("https://team12.dev.softwareengineeringii.com/api/clientSide/gateways/" + useremail, function( data ) {
   				console.log(data);
-  				for (var i = 1; i < data.length; i++) {
+  				for (var i = 0; i < data.length; i++) {
   					let gatewayId = data[i].GatewayId;
 
   					userGateways.push(gatewayId);
