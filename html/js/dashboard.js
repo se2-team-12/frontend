@@ -102,20 +102,23 @@ $(document).ready( function () {
 			$("section#"+inView).fadeOut();
 
 			let title =  userGateways.indexOf(gatewayId) + 1;
-			setTimeout(function(){ $("section#gateway-focus").fadeIn();}, 400);
-			$("section#gateway-focus h3#gateway-label").text("Gateway " + title + " Heartbeats");
-			
-			let index = userGateways.indexOf(gatewayId);
-			if(!shownAlert[index]){
-				if(alertType[index] == "warning"){
-					alert('Jet Engine ID 12556743JF is experiencing higher than average temperatures. Maintenence recommended.');
-				}
-				else if(alertType[index] == "error"){
-					alert("Gateway " + (index + 1) + " is not receiving data from Sensors 1 , 5, and 7 on Jet Engine 12556743JD. Please ensure all sensors are connected properly");
+			setTimeout(function(){ 
+				$("section#gateway-focus").fadeIn();
+				let index = userGateways.indexOf(gatewayId);
+				if(!shownAlert[index]){
+					if(alertType[index] == "warning"){
+						alert('Jet Engine ID 12556743JF is experiencing higher than average temperatures. Maintenence recommended.');
+					}
+					else if(alertType[index] == "error"){
+						alert("Gateway " + (index + 1) + " is not receiving data from Sensors 1 , 5, and 7 on Jet Engine 12556743JD. Please ensure all sensors are connected properly");
+					}
+
+					shownAlert[index] = true;
 				}
 
-				shownAlert[index] = true;
-			}
+			}, 400);
+			$("section#gateway-focus h3#gateway-label").text("Gateway " + title + " Heartbeats");
+			
 
 			inView = "gateway-focus";
 	   		gatewayInFocus = gatewayId;
