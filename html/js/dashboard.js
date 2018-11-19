@@ -240,9 +240,17 @@ $(document).ready( function () {
 		      					for(var i=0;i< json.length; i++){
 
 		      						if(json[i].Result){
+
+		      							let timeEpoch = json[i].TimeStamp;
+		      							let d = new Date(0);
+		      							d.setUTCSeconds(timeEpoch);
+
+		      							let date = d.toLocaleDateString();
+		      							let time = d.toLocaleTimeString();
+
 		      							return_data.push({
-			      							Date: "11/4/2018",
-			      							Time: "",
+			      							Date: date,
+			      							Time: time,
 			      							Type: json[i].Type,
 			      							Result: json[i].Result
 		      							})
@@ -369,7 +377,7 @@ function initEventListeners(){
 		  data: formData,
 		  success: function(msg) {
 
-		  	$("#reigster-gateway-response").html("<h4>Save this unique gateway ID to initilize your new gateway: </h4> <br/> " + msg.GatewayId)
+		  	$("#register-gateway-response").html("<h4>Save this unique gateway ID to initilize your new gateway: </h4> <br/> " + msg.GatewayId)
 		    console.log(msg);
 		  }
 		});
