@@ -108,10 +108,10 @@ $(document).ready( function () {
 			let index = userGateways.indexOf(gatewayId);
 			if(!shownAlert[index]){
 				if(alertType[index] == "warning"){
-					alert('warning!!!!');
+					alert('Jet Engine ID 12556743JF is experiencing higher than average temperatures. Maintenence recommended.');
 				}
 				else if(alertType[index] == "error"){
-					alert("error");
+					alert("Gateway " + (index + 1) + " is not receiving data from Sensors 1 , 5, and 7 on Jet Engine 12556743JD. Please ensure all sensors are connected properly";
 				}
 
 				shownAlert[index] = true;
@@ -125,48 +125,48 @@ $(document).ready( function () {
 			let timestampAjax = "https://team12.dev.softwareengineeringii.com/api/clientSide/" + gatewayId;
 			// 
 
-			let timeStampData = [];
+		// 	let timeStampData = [];
 
-			$.get( timestampAjax, function( data ) {
+		// 	$.get( timestampAjax, function( data ) {
   				
-  				for (var i = data.length - 1; i >= 0; i--) {
-  					let date = new Date(0);
-  					date.setUTCSeconds(data[i].TimeStamp)
-  					date = date.toISOString();
+  // 				for (var i = data.length - 1; i >= 0; i--) {
+  // 					let date = new Date(0);
+  // 					date.setUTCSeconds(data[i].TimeStamp)
+  // 					date = date.toISOString();
 
-  					let dataitem = {"timestamp" : date, "type" : "heartbeat"};
+  // 					let dataitem = {"timestamp" : date, "type" : "heartbeat"};
   					
-  					timeStampData.push(dataitem);
-  				}
+  // 					timeStampData.push(dataitem);
+  // 				}
   				
   				
-			});
+		// 	});
 
-			console.log(timeStampData)
+		// 	console.log(timeStampData)
 
 
 
-			$('.eventcontrol').EventControl({
-		  		hammertime: true,
-		  		onhover: function(item, element, event, inout) {
-		    		if (inout == 'out') {
-		      			$('.eventcontrol-target').html('');
-		      			element.css('color', element.data('clr'));
-		    		} 
-		    		else {
-		      			var x = ['<h2>', moment(item.timestamp).format('YYYY-MM-DD HH:mm:ss'), '</h2>'];
-				    	$('.eventcontrol-target').html(x.join(''));
-					    $('.eventcontrol-target').css('color', element.css('color'));
-					    element.data('clr', element.css('color'));
-					    element.css('color', '#9b59b6');
-		    		}
-		  		},
-				onclick: function(item, element, event) {
-				    alert(item.timestamp);
-				  },
-		  		data: timeStampData
+		// 	$('.eventcontrol').EventControl({
+		//   		hammertime: true,
+		//   		onhover: function(item, element, event, inout) {
+		//     		if (inout == 'out') {
+		//       			$('.eventcontrol-target').html('');
+		//       			element.css('color', element.data('clr'));
+		//     		} 
+		//     		else {
+		//       			var x = ['<h2>', moment(item.timestamp).format('YYYY-MM-DD HH:mm:ss'), '</h2>'];
+		// 		    	$('.eventcontrol-target').html(x.join(''));
+		// 			    $('.eventcontrol-target').css('color', element.css('color'));
+		// 			    element.data('clr', element.css('color'));
+		// 			    element.css('color', '#9b59b6');
+		//     		}
+		//   		},
+		// 		onclick: function(item, element, event) {
+		// 		    alert(item.timestamp);
+		// 		  },
+		//   		data: timeStampData
 
-		});
+		// });
 
 			// });
 			if(gatewayFocusTable){
