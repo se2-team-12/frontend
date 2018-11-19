@@ -111,7 +111,7 @@ $(document).ready( function () {
 					alert('Jet Engine ID 12556743JF is experiencing higher than average temperatures. Maintenence recommended.');
 				}
 				else if(alertType[index] == "error"){
-					alert("Gateway " + (index + 1) + " is not receiving data from Sensors 1 , 5, and 7 on Jet Engine 12556743JD. Please ensure all sensors are connected properly";
+					alert("Gateway " + (index + 1) + " is not receiving data from Sensors 1 , 5, and 7 on Jet Engine 12556743JD. Please ensure all sensors are connected properly");
 				}
 
 				shownAlert[index] = true;
