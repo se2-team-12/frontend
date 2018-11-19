@@ -229,7 +229,7 @@ div.right-view section{
 }
 
 div.right-view section select.nice-select{
-    margin: auto;
+    margin: 10px auto;
     display: block;
     padding: 10px 3px;
     width: 255px;
