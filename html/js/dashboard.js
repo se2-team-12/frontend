@@ -420,6 +420,11 @@ function initEventListeners(){
 		logout();
 	});
 
+	$("form#software-download-form").submit(function(e){
+		e.preventDefault();
+		alert("COMING SOON")
+	});
+
 }
 
 function logout(){

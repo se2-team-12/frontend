@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang ="en">
+<head>
+	<meta charset ="utf-8">
+	<meta name ="viewport" content = "width=device-width, initial-scale=1.0">
+	<meta name = "author" content ="Team 12">
+	<link rel="stylesheet" href ="./css/base.css" type = "text/css"/>
+	<title>API Documentation</title>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+	
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+</head>
+
+<body>
+
+	<header class="header">
+		<span>St Edward's University</span>
+		<span>Software Engineering II</span>
+		<span>Team 12</span>
+	</header>
+
+	<div class="content" style="margin-top: 50px; text-align: center;">
+
+
+		<h1 style="font-size: 24px; margin-top: 60px;">Gateway API Documentation </h1>
+		
+		<a href="https://team12.dev.softwareengineeringii.com" style="text-decoration: none"><div class="logo">12</div></a>
+
+		<h3 style="width: 400px; margin: 20px auto 10px;">Base URI:</h3>
+		<div style="margin-bottom: 50px;"><br/>https://team12.dev.softwareengineeringii.com</div>
+
+		<table id="API-table" class="display" style="text-align: left">
+			    <thead>
+			        <tr>
+			            <th>EndPoint</th>
+			            <th>Input</th>
+			            <th>Output</th>
+			            <th>Method</th>
+			        </tr>
+			    </thead>
+			    <tbody>
+			    	<tr>
+			    		<td>BaseURI/gateway/heartbeat/GatewayId</td>
+			    		<td>Token, GWID, TimeStamp</td>
+			    		<td>confirmation&ODD / errormessage</td>
+			    		<td>POST</td>
+			    	</tr>
+			    	<tr>
+			    		<td>BaseURI/gateway/diagnostic/test</td>
+			    		<td>Token, ODD, GWID, Type, Result, IsClear</td>
+			    		<td>confirmation / errormessage</td>
+			    		<td>POST</td>
+			    	</tr>
+			    	<tr>
+			    		<td>BaseURI/gateway/GatewayId</td>
+			    		<td>null</td>
+			    		<td>All diagnostics for GWID</td>
+			    		<td>GET</td>
+			    	</tr>
+			    	<tr>
+			    		<td>BaseURI/gateway/dailyDiagnostic/test</td>
+			    		<td>GatewayId, Type, Result, Time</td>
+			    		<td>confirmation / errormessage</td>
+			    		<td>POST</td>
+			    	</tr>
+			    	<tr>
+			    		<td>BaseURI/gateway/newGateway</td>
+			    		<td>GatewayId</td>
+			    		<td>Response with GWID info</td>
+			    		<td>POST</td>
+			    	</tr>
+			    </tbody>
+
+			</table>
+
+			<script type="text/javascript">$("#API-table").DataTable();</script>
+
+
+		<div class="examples">
+
+			<h3>Failure to input Token on a POST on gateway endpoints will result in the JSON response:</h3>
+
+			<div style="white-space: pre-wrap;">
+			{"auth": false,"message": "No token provided."}
+			</div>
+
+			<h3>
+			A valid heartbeat POST request on gateway will yield the following JSON response (example):
+			</h3>
+
+			<div style="white-space: pre-wrap;">
+			{"postedHeartbeat": 
+				{"_id": "5bccc1257bc32a2f8fc7cd7c","GatewayId": "2","TimeStamp": "1:00pm","__v": 0},
+				"odd": [
+					{
+						"_id": "5bccbed97bc32a2f8fc7cd7b",
+						"ODD": "cpuddd.py",
+						"GatewayId": "2",
+						"__v": 0
+					}
+				],
+				"message": "Success"
+			}
+			</div>
+
+			<h3>
+			A valid diagnostic POST request on gateway will yield the following JSON response (example):
+			</h3>
+
+			<div style="white-space: pre-wrap;">
+			{"Diagnostic": 
+				{
+					"_id": "5bccc19b7bc32a2f8fc7cd7d",
+					"GatewayId": "1",
+					"Type": "cpu",
+					"IsClear": false,
+					"__v": 0
+				},
+				"message": "POST Success"
+			}
+			</div>	
+
+		</div>
+
+	</div> <!-- end content div -->
+
+	<footer class="site-footer">
+		<span>Marcos</span>
+		<span>Joe</span>
+		<span>Batool</span>
+		<span>John</span>
+		<span>Chloe</span>
+	</footer>
+</body>
+</html>

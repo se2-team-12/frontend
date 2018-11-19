@@ -57,7 +57,7 @@
 				Create New Gateway
 			</li>
 			<li class="nav-item" data-id="software-download">
-				Upload New Diagnostic
+				Download New Diagnostics to Gateway
 			</li>
 			<li class="nav-item" data-id="data-viz">Data Vizualization</li>
 		</ul>
@@ -170,11 +170,16 @@
 			<h3>Upload Custom Diagnostic Software</h3>
 			<form id="software-download-form">
 				<select class="nice-select" name="gatewayID">
-					<!-- <option value="1234">Gateway 1234</option> -->
+					<option value="all">All Gateways</option>
 				</select>
-				<span>Please select a python file to upload
-  				<input type="file" name="diagnostic"  accept=".py">
-  				<input type="submit" value="Upload Diagnostic Code">
+
+				<select class="nice-select" name="diagnostic">
+					<option>Temperature</option>
+					<option>Total Time Running</option>
+					<option>Time Since Last Error</option>
+					<option>Electricity Usage</option>
+				</select>
+  				<input type="submit" value="Download File to Gateway">
 			</form>
 		</section>
 
