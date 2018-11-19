@@ -9,6 +9,8 @@ $(document).ready( function () {
 	const userGateways = [];
 	checkCookie();
 
+	let alertType = [];
+	let shownAlert = [];
 
 	let inView = "dashboard-view";
 	
@@ -83,6 +85,9 @@ $(document).ready( function () {
 
 			dashboardTable.row.add([i + 1, "<span class='notification " + alertArray[randomdigit] + "'>" + alertArray[randomdigit] + "</span>"]).draw();
 
+			alertType[i] = alertArray[randomdigit];
+			shownAlert[i] = false;
+
 			$("#software-download-form select").append("<option value='" + gatewayId + "'>Gateway " + (i+1) + "</option>")
 		}
 
@@ -99,7 +104,11 @@ $(document).ready( function () {
 			let title =  userGateways.indexOf(gatewayId) + 1;
 			setTimeout(function(){ $("section#gateway-focus").fadeIn();}, 400);
 			$("section#gateway-focus h3#gateway-label").text("Gateway " + title + " Heartbeats");
-		
+			
+			let index = userGateways.indexOf(gatewayId);
+			if(!shownAlert[index]){
+				console.log(alertType[index]);
+			}
 
 			inView = "gateway-focus";
 	   		gatewayInFocus = gatewayId;
