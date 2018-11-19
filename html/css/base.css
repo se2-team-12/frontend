@@ -288,6 +288,11 @@ div.container{
     margin-top: 36px;
 }
 
+#register-gateway-response{
+    margin-bottom: 10px;
+    text-align: center;
+}
+
 
 @media screen and (max-width: 900px){
     div.nav{
