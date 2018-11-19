@@ -211,7 +211,14 @@ $(document).ready( function () {
      			//item["IsClear"] == true && 
   				if(item["Type"]){
 
-  					let dataRow = [item["Type"], item["Result"]]
+  					let timeEpoch = item["TimeStamp"];
+					let d = new Date(0);
+					d.setUTCSeconds(timeEpoch);
+
+					let date = d.toLocaleDateString();
+					let time = d.toLocaleTimeString();
+
+  					let dataRow = [date, time, item["Type"], item["Result"]];
   					dataSet.push(dataRow);
   				
   				}
