@@ -403,7 +403,7 @@ function initEventListeners(){
 		  data: formData,
 		  success: function(msg) {
 
-		  	$("#register-gateway-response").html("<h4>Save this unique gateway ID to initilize your new gateway: </h4> <br/> " + msg.GatewayId)
+		  	$("#register-gateway-response").html("<h4>Save this unique gateway ID to initilize your new gateway: </h4> <br/> " + msg.Gateway.GatewayId)
 		    console.log(msg);
 		  }
 		});
